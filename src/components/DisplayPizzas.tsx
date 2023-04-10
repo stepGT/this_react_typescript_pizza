@@ -5,13 +5,19 @@ import Pizza from '../models/Pizza';
 interface IDisplayPizzas {
   pizzasList: Pizza[];
   updatePizza: (newPizza: Pizza) => void;
+  deletePizza: (id: number) => void;
 }
 
-const DisplayPizzas: FC<IDisplayPizzas> = ({ pizzasList, updatePizza }) => {
+const DisplayPizzas: FC<IDisplayPizzas> = ({ pizzasList, updatePizza, deletePizza }) => {
   return (
     <div className="container">
       {pizzasList.map((pizza) => (
-        <SinglePizza key={pizza.id} pizza={pizza} updatePizza={updatePizza} />
+        <SinglePizza
+          key={pizza.id}
+          pizza={pizza}
+          updatePizza={updatePizza}
+          deletePizza={deletePizza}
+        />
       ))}
     </div>
   );
