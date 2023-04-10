@@ -9,13 +9,16 @@ const App: FC = () => {
   const addPizza = (newPizza: Pizza) => {
     setPizzasList([...pizzasList, newPizza]);
   };
+  const updatePizza = (newPizza: Pizza) => {
+    setPizzasList(pizzasList.map((pizza) => (pizza.id === newPizza.id ? newPizza : pizza)));
+  };
   //
   return (
     <div className="App">
       <div className="wrap">
         <span className="heading">Наша пиццерия</span>
         <AddPizzaForm addPizza={addPizza} />
-        <DisplayPizzas pizzasList={pizzasList} />
+        <DisplayPizzas pizzasList={pizzasList} updatePizza={updatePizza} />
       </div>
     </div>
   );

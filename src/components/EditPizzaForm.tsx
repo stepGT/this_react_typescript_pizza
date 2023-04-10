@@ -4,9 +4,11 @@ import './styles.css';
 
 interface IEditPizzaForm {
   data: Pizza;
+  updatePizza: (newPizza: Pizza) => void;
+  handleToggleEdit: () => void;
 }
 
-const EditPizzaForm: FC<IEditPizzaForm> = ({ data }) => {
+const EditPizzaForm: FC<IEditPizzaForm> = ({ data, updatePizza, handleToggleEdit }) => {
   const [editPizza, setEditPizza] = useState<Pizza>(data);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,12 +26,10 @@ const EditPizzaForm: FC<IEditPizzaForm> = ({ data }) => {
     const { title, price, img } = editPizza;
 
     if (title && price && img) {
-      //updatePizza(editPizza);
-      //handleToggleEdit();
+      updatePizza(editPizza);
+      handleToggleEdit();
     }
   };
-
-  console.log('edit pizza>>>>', editPizza);
 
   return (
     <form className="edit-form" onSubmit={handleSubmit}>
